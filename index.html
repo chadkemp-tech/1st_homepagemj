@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="TOEIC Part 6 학습용 멜로디 가이드 - 억양과 강세를 노래처럼 익히기"
+    />
+    <title>TOEIC 멜로디 학습</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: system-ui, -apple-system, 'Pretendard', 'Segoe UI', Arial, sans-serif;
+        background: #F5F5F5;
+        color: #333333;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        padding: 32px 16px 64px;
+        background: #F5F5F5;
+      }
+
+      .page {
+        width: min(960px, 100%);
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      header {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        background: #FFFFFF;
+        border-radius: 12px;
+        padding: 28px 32px;
+        border: 1px solid #E0E0E0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: clamp(1.8rem, 2vw + 1rem, 2.4rem);
+        letter-spacing: -0.02em;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #34495e;
+        font-weight: 600;
+      }
+
+      header p {
+        margin: 0;
+        color: #666666;
+        line-height: 1.7;
+        font-size: 1rem;
+      }
+
+      .card {
+        background: #FFFFFF;
+        border-radius: 12px;
+        padding: 32px;
+        border: 1px solid #E0E0E0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .card h2 {
+        margin: 0 0 20px;
+        font-size: 1.5rem;
+        letter-spacing: -0.01em;
+        color: #34495e;
+        font-weight: 600;
+      }
+
+      .letter {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 28px;
+        border-radius: 10px;
+        background: #FAFAFA;
+        border: 1px solid #E8E8E8;
+        line-height: 1.8;
+      }
+
+      .letter p {
+        margin: 0;
+        font-size: 1.05rem;
+        color: #333333;
+      }
+
+      .blank-pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 2rem;
+        padding: 0.2rem 0.65rem;
+        margin: 0 0.35rem;
+        border-radius: 6px;
+        background: #E8F4F8;
+        color: #004080;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        border: 1px solid #B3D9E6;
+      }
+
+      .answers {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      .answer {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 24px;
+        background: #FFFFFF;
+        border-radius: 10px;
+        border: 1px solid #E0E0E0;
+        transition: box-shadow 0.2s ease, border-color 0.2s ease;
+      }
+
+      .answer:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-color: #D0D0D0;
+      }
+
+      .answer-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.15rem;
+        font-weight: 600;
+      }
+
+      .answer-word {
+        color: #34495e;
+        letter-spacing: -0.01em;
+      }
+
+      .answer p {
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        color: #333333;
+      }
+
+      .answer .explanation {
+        color: #666666;
+      }
+
+      .answer .melody {
+        color: #6B46C1;
+        font-weight: 600;
+      }
+
+      .quiz-options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 16px 0;
+      }
+
+      .quiz-option {
+        padding: 12px 16px;
+        background: #FAFAFA;
+        border: 2px solid #E0E0E0;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 0.95rem;
+        color: #333333;
+      }
+
+      .quiz-option:hover {
+        background: #F5F5F5;
+        border-color: #B0B0B0;
+      }
+
+      .quiz-option.selected {
+        background: #E8F4F8;
+        border-color: #004080;
+        color: #004080;
+        font-weight: 500;
+      }
+
+      .quiz-option.correct {
+        background: #E8F5E9;
+        border-color: #4CAF50;
+        color: #2E7D32;
+        font-weight: 600;
+      }
+
+      .quiz-option.incorrect {
+        background: #FFEBEE;
+        border-color: #E53935;
+        color: #C62828;
+      }
+
+      .show-answer-btn {
+        padding: 10px 20px;
+        background: #34495e;
+        color: #FFFFFF;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: background 0.2s ease;
+        margin-top: 8px;
+      }
+
+      .show-answer-btn:hover {
+        background: #2C3E50;
+      }
+
+      .answer-reveal {
+        display: none;
+        margin-top: 16px;
+        padding: 16px;
+        background: #FAFAFA;
+        border-radius: 8px;
+        border-left: 4px solid #6B46C1;
+      }
+
+      .answer-reveal.show {
+        display: block;
+      }
+
+      .answer-reveal .correct-answer {
+        font-weight: 600;
+        color: #34495e;
+        margin-bottom: 8px;
+        font-size: 1rem;
+      }
+
+      .notes {
+        background: #FAFAFA;
+        padding: 24px;
+        border-radius: 10px;
+        border: 1px solid #E8E8E8;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .notes h3 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: #34495e;
+        font-weight: 600;
+      }
+
+      .notes p {
+        margin: 0;
+        color: #666666;
+        line-height: 1.7;
+      }
+
+      .melody-text {
+        font-size: 1.05rem;
+        line-height: 1.9;
+        color: #333333;
+        background: #FFFFFF;
+        border-radius: 10px;
+        border: 1px solid #E0E0E0;
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .translation-text {
+        display: none;
+        margin: 0 0 16px 0;
+        font-size: 0.9rem;
+        color: #666666;
+        font-style: italic;
+        padding-left: 16px;
+        border-left: 3px solid #6B46C1;
+        line-height: 1.6;
+      }
+
+      .translation-text.show {
+        display: block;
+      }
+
+      .word-token {
+        display: inline-block;
+        margin-right: 0.4rem;
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        transition: background 0.2s ease, color 0.2s ease;
+      }
+
+      .word-token.active {
+        background: #6B46C1;
+        color: #FFFFFF;
+        font-weight: 600;
+      }
+
+      .word-token[data-stress="primary"],
+      .word-token[data-stress="secondary"] {
+        background: #FFEB3B;
+        color: #333333;
+        font-weight: 600;
+        padding: 0.15rem 0.35rem;
+        border-radius: 3px;
+        box-shadow: 0 1px 2px rgba(255, 235, 59, 0.3);
+      }
+
+      .word-token[data-stress="primary"] {
+        background: #FFEB3B;
+        font-weight: 700;
+      }
+
+      .word-token[data-stress="secondary"] {
+        background: #FFF9C4;
+        font-weight: 600;
+      }
+
+      .word-token[data-stress="primary"].active,
+      .word-token[data-stress="secondary"].active {
+        background: #6B46C1;
+        color: #FFFFFF;
+        box-shadow: 0 2px 4px rgba(107, 70, 193, 0.4);
+      }
+
+      .interactive-card {
+        background: #FFFFFF;
+        border-radius: 12px;
+        padding: 32px;
+        border: 1px solid #E0E0E0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .control-group {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .control-button {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        border: 1px solid #D0D0D0;
+        background: #FFFFFF;
+        color: #333333;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        cursor: pointer;
+        transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        font-size: 0.95rem;
+      }
+
+      .control-button:hover:not(:disabled) {
+        background: #F5F5F5;
+        border-color: #B0B0B0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+      }
+
+      .control-button.primary {
+        background: #34495e;
+        border: 1px solid #34495e;
+        color: #FFFFFF;
+        box-shadow: 0 2px 4px rgba(52, 73, 94, 0.2);
+      }
+
+      .control-button.primary:hover:not(:disabled) {
+        background: #2C3E50;
+        border-color: #2C3E50;
+        box-shadow: 0 4px 8px rgba(52, 73, 94, 0.3);
+      }
+
+      .control-button.danger {
+        background: #FFFFFF;
+        border: 1px solid #E53935;
+        color: #E53935;
+        box-shadow: 0 2px 4px rgba(229, 57, 53, 0.1);
+      }
+
+      .control-button.danger:hover:not(:disabled) {
+        background: #FFEBEE;
+        border-color: #C62828;
+        color: #C62828;
+      }
+
+      .control-button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        background: #F5F5F5;
+        color: #999999;
+      }
+
+      .audio-progress-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .audio-progress-bar {
+        position: relative;
+        width: 100%;
+        height: 8px;
+        background: #E0E0E0;
+        border-radius: 4px;
+        cursor: pointer;
+        overflow: hidden;
+      }
+
+      .audio-progress-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background: #6B46C1;
+        border-radius: 4px;
+        transition: width 0.1s linear;
+        width: 0%;
+      }
+
+      .audio-progress-handle {
+        position: absolute;
+        top: 50%;
+        left: 0%;
+        transform: translate(-50%, -50%);
+        width: 16px;
+        height: 16px;
+        background: #6B46C1;
+        border-radius: 50%;
+        border: 2px solid #FFFFFF;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        transition: opacity 0.2s ease;
+      }
+
+      .audio-progress-bar:hover .audio-progress-handle {
+        opacity: 1;
+      }
+
+      .audio-time-display {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.85rem;
+        color: #666666;
+        font-weight: 500;
+      }
+
+      .speed-control {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: #FAFAFA;
+        border-radius: 10px;
+        padding: 16px 20px;
+        border: 1px solid #E0E0E0;
+      }
+
+      .speed-control label {
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: #333333;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .speed-control input[type='range'] {
+        flex: 1;
+        max-width: 320px;
+        appearance: none;
+        height: 6px;
+        border-radius: 999px;
+        background: #E0E0E0;
+        outline: none;
+      }
+
+      .speed-control input[type='range']::-webkit-slider-thumb {
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #34495e;
+        box-shadow: 0 2px 4px rgba(52, 73, 94, 0.3);
+        cursor: pointer;
+      }
+
+      .speed-control input[type='range']::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #34495e;
+        border: none;
+        box-shadow: 0 2px 4px rgba(52, 73, 94, 0.3);
+        cursor: pointer;
+      }
+
+      .status {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        font-size: 0.9rem;
+        color: #666666;
+      }
+
+      .status span {
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+        background: #F5F5F5;
+        border-radius: 6px;
+        padding: 0.4rem 0.9rem;
+        border: 1px solid #E0E0E0;
+      }
+
+      .recordings {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        background: #FAFAFA;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #E0E0E0;
+      }
+
+      .recordings h3 {
+        margin: 0;
+        font-size: 1.05rem;
+        color: #34495e;
+        font-weight: 600;
+      }
+
+      .recordings-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .recordings-list audio {
+        width: 100%;
+        outline: none;
+      }
+
+      footer {
+        font-size: 0.9rem;
+        color: #999999;
+        text-align: center;
+      }
+
+      .interactive-card h3 {
+        color: #34495e;
+        font-weight: 600;
+        margin: 0 0 8px;
+        font-size: 1.1rem;
+      }
+
+      .interactive-card p {
+        color: #666666;
+        margin: 0 0 12px;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 640px) {
+        body {
+          padding: 24px 12px 48px;
+        }
+
+        .card {
+          padding: 22px;
+        }
+
+        .answers {
+          grid-template-columns: 1fr;
+        }
+
+        .control-group {
+          flex-direction: column;
+        }
+
+        .control-button {
+          width: 100%;
+        }
+
+        .speed-control {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+        }
+
+        .speed-control input[type='range'] {
+          width: 100%;
+          max-width: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <h1>TOEIC Part 6 멜로디 학습 가이드</h1>
+        <p>
+          아래 파트 6 편지를 노래하듯 읽어 보세요. 괄호로 표시된 공백 번호는 문제 번호를
+          나타냅니다. 정답과 억양 힌트를 참고해 리듬과 강세를 익히고, 하단의 멜로디 스크립트를
+          따라 노래하며 연습해 보세요.
+        </p>
+      </header>
+
+      <section class="card">
+        <h2>편지 원문 (공백 포함)</h2>
+        <div class="letter">
+          <p>June 22</p>
+          <p>Ben Werth</p>
+          <p>Werth Construction Company</p>
+          <p>555 Alaska Avenue</p>
+          <p>Chalmers, NB M1B 4N3</p>
+          <p></p>
+          <p>Dear Mr. Werth,</p>
+          <p></p>
+          <p>
+            Thank you for sending the final <span class="blank-pill">4</span> for your recent order,
+            which consisted of 40 cubic feet of lumber delivered on June 15. As you requested, we have
+            enclosed the receipt showing the bill has been paid in full. However, we do wish to remind
+            you that you still have one <span class="blank-pill">5</span> outstanding bill for
+            flooring.
+          </p>
+          <p></p>
+          <p>
+            As for delivery of the flooring, we have checked with the warehouse and they said the
+            materials can be sent to you by July 5.
+            <span class="blank-pill">6</span>
+            that day is acceptable to you, we will go ahead and process it. Please bear in mind that we
+            will need confirmation from you by June 29 in order to make the July 5 date.
+            <span class="blank-pill">7</span>. We hope to hear from you soon.
+          </p>
+          <p></p>
+          <p>Sincerely,</p>
+          <p></p>
+          <p>John May</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>정답 &amp; 멜로디 힌트</h2>
+        <div class="answers">
+          <article class="answer" data-quiz="4">
+            <div class="answer-header">
+              <span class="blank-pill">4</span>
+              <span class="answer-word">문제 4</span>
+            </div>
+            <p class="explanation">
+              Thank you for sending the final <strong>_____</strong> for your recent order...
+            </p>
+            <div class="quiz-options">
+              <div class="quiz-option" data-value="payment">(A) payment</div>
+              <div class="quiz-option" data-value="paying">(B) paying</div>
+              <div class="quiz-option" data-value="paid">(C) paid</div>
+              <div class="quiz-option" data-value="pay">(D) pay</div>
+            </div>
+            <button class="show-answer-btn" data-quiz="4">정답 확인</button>
+            <div class="answer-reveal" id="answer-4">
+              <div class="correct-answer">정답: (A) payment</div>
+              <p class="explanation">
+                송장 결제가 완료되었음을 확인하는 문맥이므로 'payment'가 자연스럽게 연결됩니다.
+              </p>
+              <p class="melody">
+                "PAY-ment"의 "PAY"에 강세를 주고 두 박자로 늘려 노래하면 완결감을 줄 수 있어요.
+              </p>
+            </div>
+          </article>
+
+          <article class="answer" data-quiz="5">
+            <div class="answer-header">
+              <span class="blank-pill">5</span>
+              <span class="answer-word">문제 5</span>
+            </div>
+            <p class="explanation">
+              ...you still have one <strong>_____</strong> outstanding bill for flooring.
+            </p>
+            <div class="quiz-options">
+              <div class="quiz-option" data-value="remaining">(A) remaining</div>
+              <div class="quiz-option" data-value="remain">(B) remain</div>
+              <div class="quiz-option" data-value="remained">(C) remained</div>
+              <div class="quiz-option" data-value="remains">(D) remains</div>
+            </div>
+            <button class="show-answer-btn" data-quiz="5">정답 확인</button>
+            <div class="answer-reveal" id="answer-5">
+              <div class="correct-answer">정답: (A) remaining</div>
+              <p class="explanation">
+                아직 한 건의 미결제 청구서가 남아 있다는 의미를 강조하므로 'remaining'이 적절합니다.
+              </p>
+              <p class="melody">
+                "re-MAIN-ing"의 "MAIN"을 살짝 올려 읽으면 강세가 살아나고 전체는 내려오는 흐름으로
+                부를 수 있어요.
+              </p>
+            </div>
+          </article>
+
+          <article class="answer" data-quiz="6">
+            <div class="answer-header">
+              <span class="blank-pill">6</span>
+              <span class="answer-word">문제 6</span>
+            </div>
+            <p class="explanation">
+              <strong>_____</strong> that day is acceptable to you, we will go ahead and process it.
+            </p>
+            <div class="quiz-options">
+              <div class="quiz-option" data-value="If">(A) If</div>
+              <div class="quiz-option" data-value="When">(B) When</div>
+              <div class="quiz-option" data-value="Because">(C) Because</div>
+              <div class="quiz-option" data-value="Although">(D) Although</div>
+            </div>
+            <button class="show-answer-btn" data-quiz="6">정답 확인</button>
+            <div class="answer-reveal" id="answer-6">
+              <div class="correct-answer">정답: (A) If</div>
+              <p class="explanation">
+                조건을 나타내는 절을 이끌어야 하므로 "If that day is acceptable …" 문장이 자연스럽습니다.
+              </p>
+              <p class="melody">
+                "If"는 짧게 준비 박자처럼 부르고 "that day"는 길게 이어서 조건을 명확히 표현해 보세요.
+              </p>
+            </div>
+          </article>
+
+          <article class="answer" data-quiz="7">
+            <div class="answer-header">
+              <span class="blank-pill">7</span>
+              <span class="answer-word">문제 7</span>
+            </div>
+            <p class="explanation">
+              Please bear in mind that we will need confirmation from you by June 29... <strong>_____</strong>
+            </p>
+            <div class="quiz-options">
+              <div class="quiz-option" data-value="Otherwise, we cannot guarantee the July 5 delivery date">(A) Otherwise, we cannot guarantee the July 5 delivery date</div>
+              <div class="quiz-option" data-value="However, we can guarantee the July 5 delivery date">(B) However, we can guarantee the July 5 delivery date</div>
+              <div class="quiz-option" data-value="Therefore, we will guarantee the July 5 delivery date">(C) Therefore, we will guarantee the July 5 delivery date</div>
+              <div class="quiz-option" data-value="Moreover, we cannot guarantee the July 5 delivery date">(D) Moreover, we cannot guarantee the July 5 delivery date</div>
+            </div>
+            <button class="show-answer-btn" data-quiz="7">정답 확인</button>
+            <div class="answer-reveal" id="answer-7">
+              <div class="correct-answer">정답: (A) Otherwise, we cannot guarantee the July 5 delivery date</div>
+              <p class="explanation">
+                6월 29일까지 회신하지 않으면 7월 5일 배송을 보장할 수 없다는 이유를 설명하는 문장입니다.
+              </p>
+              <p class="melody">
+                "Otherwise"는 낮게 시작하고 "cannot guarantee"에서 점점 음을 올려 긴박감을 표현해 주세요.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>노래하듯 읽기 스크립트</h2>
+        <div class="notes">
+          <h3>리듬 연습 팁</h3>
+          <p>
+            숫자와 날짜는 또렷하게, 강세가 있는 음절은 한 걸음 더 높게 올려 부르면 자연스러운 억양이
+            만들어집니다. 문단 사이에 짧은 숨을 넣어 실제 비즈니스 편지의 흐름을 살려 보세요.
+          </p>
+        </div>
+        <div style="margin-bottom: 16px;">
+          <button class="control-button" id="toggle-translation" style="font-size: 0.9rem; padding: 0.6rem 1.2rem;">
+            📖 원문 해석 보기
+          </button>
+        </div>
+        <div class="melody-text" id="melody-text"></div>
+      </section>
+
+      <section class="interactive-card">
+        <h2>멜로디 &amp; 음성 연습 도구</h2>
+        <div class="status" id="status-bar">
+          <span id="melody-status">🎼 멜로디: 대기 중</span>
+          <span id="speech-status">🗣️ 음성: 대기 중</span>
+          <span id="record-status">🎤 녹음: 준비 완료</span>
+        </div>
+
+        <div class="speed-control">
+          <label for="speed-range">
+            재생 속도
+            <span id="speed-value">1.0x</span>
+          </label>
+          <input type="range" id="speed-range" min="0.5" max="2.0" step="0.1" value="1.0" />
+        </div>
+
+        <div>
+          <h3>1. 멜로디 생성</h3>
+          <p>자동으로 생성된 간단한 멜로디를 들으며 단어 강세와 리듬을 익혀보세요.</p>
+          <div class="control-group">
+            <button class="control-button primary" id="melody-toggle">🎵 멜로디 재생</button>
+            <button class="control-button" id="melody-stop" disabled>⏹ 멜로디 정지</button>
+          </div>
+          <div class="audio-progress-container" id="melody-progress-container" style="display: none; margin-top: 16px;">
+            <div class="audio-progress-bar" id="melody-progress-bar">
+              <div class="audio-progress-fill" id="melody-progress-fill"></div>
+              <div class="audio-progress-handle" id="melody-progress-handle"></div>
+            </div>
+            <div class="audio-time-display">
+              <span id="melody-current-time">0:00</span>
+              <span>/</span>
+              <span id="melody-duration">0:00</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3>2. 음성 안내 듣기</h3>
+          <p>원문을 자연스러운 억양으로 읽어주는 음성을 듣고 따라 읽어보세요.</p>
+          <div class="control-group">
+            <button class="control-button primary" id="speech-toggle">▶ 음성 재생</button>
+            <button class="control-button" id="speech-stop" disabled>⏹ 음성 정지</button>
+          </div>
+        </div>
+
+        <div>
+          <h3>3. 나의 목소리 녹음하기</h3>
+          <p>멜로디를 따라 부르며 자신의 발음을 녹음해 비교해 보세요.</p>
+          <div class="control-group">
+            <button class="control-button primary" id="record-toggle">🎤 녹음 시작</button>
+            <button class="control-button danger" id="record-stop" disabled>⏹ 녹음 종료</button>
+          </div>
+          <div class="recordings" id="recordings-panel" hidden>
+            <h3>내 녹음 모음</h3>
+            <div class="recordings-list" id="recordings-list"></div>
+          </div>
+        </div>
+
+      </section>
+
+      <footer>© 2025 TOEIC Melody Trainer</footer>
+    </div>
+
+    <script>
+      const melodyText = `June twenty-second.
+
+Ben Werth
+
+Werth Construction Company
+
+555 Alaska Avenue
+
+Chalmers, NB M1B 4N3
+
+Dear Mr. Werth,
+
+Thank you for sending the final payment for your recent order, which consisted of forty cubic feet of lumber delivered on June fifteenth. As you requested, we have enclosed the receipt showing the bill has been paid in full. However, we wish to remind you that you still have one remaining outstanding bill for flooring.
+
+As for delivery of the flooring, we have checked with the warehouse and they said the materials can be sent to you by July fifth. If that day is acceptable to you, we will go ahead and process it. Please bear in mind that we will need confirmation from you by June twenty-ninth in order to make the July fifth date. Otherwise, we cannot guarantee the July fifth delivery date. We hope to hear from you soon.
+
+Sincerely,
+John May.`;
+
+      // 문장별 한국어 해석
+      const translations = {
+        'June twenty-second.': '6월 22일',
+        'Ben Werth': 'Ben Werth',
+        'Werth Construction Company': 'Werth 건설 회사',
+        '555 Alaska Avenue': '알래스카 거리 555번지',
+        'Chalmers, NB M1B 4N3': 'Chalmers, NB M1B 4N3',
+        'Dear Mr. Werth,': 'Werth님께,',
+        'Thank you for sending the final payment for your recent order, which consisted of forty cubic feet of lumber delivered on June fifteenth.': '최근 주문하신 40입방피트의 목재(6월 15일 배송)에 대한 최종 결제를 보내주셔서 감사합니다.',
+        'As you requested, we have enclosed the receipt showing the bill has been paid in full.': '요청하신 대로, 청구서가 전액 결제되었음을 보여주는 영수증을 동봉했습니다.',
+        'However, we wish to remind you that you still have one remaining outstanding bill for flooring.': '그러나 아직 바닥재에 대한 미결제 청구서가 하나 남아있음을 알려드립니다.',
+        'As for delivery of the flooring, we have checked with the warehouse and they said the materials can be sent to you by July fifth.': '바닥재 배송에 관해서는, 창고에 확인한 결과 7월 5일까지 자재를 보낼 수 있다고 합니다.',
+        'If that day is acceptable to you, we will go ahead and process it.': '그 날짜가 괜찮으시다면, 진행하겠습니다.',
+        'Please bear in mind that we will need confirmation from you by June twenty-ninth in order to make the July fifth date.': '7월 5일 날짜를 맞추기 위해서는 6월 29일까지 확인이 필요합니다.',
+        'Otherwise, we cannot guarantee the July fifth delivery date.': '그렇지 않으면 7월 5일 배송 날짜를 보장할 수 없습니다.',
+        'We hope to hear from you soon.': '곧 연락 주시기 바랍니다.',
+        'Sincerely,': '진심을 담아,',
+        'John May.': 'John May.'
+      };
+
+
+      const melodyContainer = document.getElementById('melody-text');
+      const melodyToggle = document.getElementById('melody-toggle');
+      const melodyStop = document.getElementById('melody-stop');
+      const melodyStatus = document.getElementById('melody-status');
+      const toggleTranslation = document.getElementById('toggle-translation');
+
+      const speechToggle = document.getElementById('speech-toggle');
+      const speechStop = document.getElementById('speech-stop');
+      const speechStatus = document.getElementById('speech-status');
+
+      const recordToggle = document.getElementById('record-toggle');
+      const recordStop = document.getElementById('record-stop');
+      const recordStatus = document.getElementById('record-status');
+      const recordingsPanel = document.getElementById('recordings-panel');
+      const recordingsList = document.getElementById('recordings-list');
+
+
+      const speedSlider = document.getElementById('speed-range');
+      const speedValue = document.getElementById('speed-value');
+
+      let wordSpans = [];
+      let noteSchedule = [];
+      let highlightTimeouts = [];
+      let audioCtx = null;
+      let isMelodyPlaying = false;
+
+      let playbackSpeed = 1.0;
+
+      const STRESS_PITCH_OFFSETS = {
+        primary: 7,
+        secondary: 4,
+        weak: 0,
+      };
+
+      const MELODIC_MOTIF = [0, 2, 4, 5, 7, 9, 12, 9, 7, 5];
+      const RHYTHM_PATTERN = [0.55, 0.4, 0.7, 0.5, 0.65, 0.45];
+
+      let activeNodes = [];
+      let masterGain = null;
+      let ambienceDelay = null;
+      let ambienceFeedback = null;
+      let ambienceTone = null;
+      let accompanimentGain = null;
+
+      let speechUtterance = null;
+      let isSpeechPlaying = false;
+      let wasSpeechPaused = false;
+
+      let mediaRecorder = null;
+      let recordedChunks = [];
+      let recordingCount = 0;
+
+      // MP3 오디오 요소 추가
+      // 여러 경로를 시도 (개발 서버용 절대 경로, 직접 열기용 상대 경로)
+      const mp3Audio = new Audio();
+      let isMp3Playing = false;
+      let highlightIntervalId = null;
+      let progressUpdateInterval = null;
+      
+      // 재생바 요소
+      const melodyProgressContainer = document.getElementById('melody-progress-container');
+      const melodyProgressBar = document.getElementById('melody-progress-bar');
+      const melodyProgressFill = document.getElementById('melody-progress-fill');
+      const melodyProgressHandle = document.getElementById('melody-progress-handle');
+      const melodyCurrentTime = document.getElementById('melody-current-time');
+      const melodyDuration = document.getElementById('melody-duration');
+      
+      // MP3 파일 경로 시도 (우선순위 순)
+      const audioPaths = [
+        '/toeic-melody-learning.mp3',  // Vite 개발 서버용
+        './public/toeic-melody-learning.mp3',  // 상대 경로
+        './toeic-melody-learning.mp3',  // 같은 폴더
+        'toeic-melody-learning.mp3'  // 현재 디렉토리
+      ];
+      
+      let currentPathIndex = 0;
+      
+      const tryLoadAudio = () => {
+        if (currentPathIndex >= audioPaths.length) {
+          console.error('모든 경로에서 MP3 파일을 찾을 수 없습니다.');
+          updateMelodyStatus('멜로디: 파일을 찾을 수 없습니다.');
+          alert('MP3 파일을 찾을 수 없습니다.\n\n파일 위치를 확인해주세요:\n- public/toeic-melody-learning.mp3\n또는\n- HTML 파일과 같은 폴더');
+          return;
+        }
+        
+        mp3Audio.src = audioPaths[currentPathIndex];
+        console.log(`MP3 파일 로드 시도: ${audioPaths[currentPathIndex]}`);
+      };
+      
+      // MP3 파일 로드 에러 처리
+      mp3Audio.addEventListener('error', (e) => {
+        console.error(`MP3 파일 로드 오류 (${audioPaths[currentPathIndex]}):`, e);
+        currentPathIndex++;
+        tryLoadAudio();
+      });
+      
+      mp3Audio.addEventListener('loadeddata', () => {
+        console.log(`MP3 파일 로드 성공: ${audioPaths[currentPathIndex]}`);
+        updateMelodyStatus('멜로디: 준비 완료');
+      });
+      
+      // 초기 로드 시도
+      tryLoadAudio();
+
+      const createWordSpan = (word, index) => {
+        const span = document.createElement('span');
+        span.textContent = word;
+        span.dataset.index = index;
+        span.className = 'word-token';
+        return span;
+      };
+
+      const renderMelodyText = () => {
+        const paragraphs = melodyText.trim().split(/\n\s*\n/);
+        let wordIndex = 0;
+        paragraphs.forEach((paragraph) => {
+          const paragraphWrapper = document.createElement('div');
+          paragraphWrapper.style.marginBottom = '20px';
+          
+          // 영어 문장 렌더링
+          const paragraphEl = document.createElement('p');
+          paragraphEl.style.margin = '0 0 6px 0';
+          paragraphEl.style.lineHeight = '1.8';
+          const words = paragraph.split(/\s+/);
+          words.forEach((word) => {
+            if (!word) return;
+            const span = createWordSpan(word, wordIndex);
+            wordSpans.push(span);
+            paragraphEl.appendChild(span);
+            paragraphEl.appendChild(document.createTextNode(' '));
+            wordIndex += 1;
+          });
+          paragraphWrapper.appendChild(paragraphEl);
+          
+          // 문장별 해석 추가
+          const sentences = paragraph.split(/([.!?]\s+)/);
+          let currentSentence = '';
+          sentences.forEach((part) => {
+            currentSentence += part;
+            if (/[.!?]/.test(part)) {
+              const cleanSentence = currentSentence.trim();
+              const translationText = translations[cleanSentence] || '';
+              if (translationText) {
+                const translationEl = document.createElement('p');
+                translationEl.className = 'translation-text';
+                translationEl.textContent = translationText;
+                paragraphWrapper.appendChild(translationEl);
+              }
+              currentSentence = '';
+            }
+          });
+          
+          // 마지막 문장 처리 (마침표 없이 끝나는 경우)
+          if (currentSentence.trim()) {
+            const translationText = translations[currentSentence.trim()] || '';
+            if (translationText) {
+              const translationEl = document.createElement('p');
+              translationEl.className = 'translation-text';
+              translationEl.textContent = translationText;
+              paragraphWrapper.appendChild(translationEl);
+            }
+          }
+          
+          melodyContainer.appendChild(paragraphWrapper);
+        });
+      };
+
+      const midiToFrequency = (midi) => 440 * Math.pow(2, (midi - 69) / 12);
+
+      const buildNoteSchedule = () => {
+        noteSchedule = [];
+        let currentTime = 0;
+        let motifIndex = 0;
+        const baseMidi = 64; // E4
+        
+        // 노란색 형광펜으로 표시할 중요한 단어들 (소문자로 비교)
+        const importantWords = new Set([
+          'payment', 'remaining', 'outstanding', 'delivery', 'warehouse',
+          'materials', 'acceptable', 'confirmation', 'guarantee', 'enclosed',
+          'receipt', 'consisted', 'cubic', 'lumber', 'promptly'
+        ]);
+        
+        wordSpans.forEach((span, idx) => {
+          const raw = span.textContent || '';
+          const clean = raw.replace(/[^A-Za-z']/g, '').toLowerCase();
+          if (!clean) return;
+
+          // 중요한 단어인지 확인
+          const isImportant = importantWords.has(clean);
+          const stressLabel = isImportant ? 'primary' : 'weak';
+          const stressOffset = STRESS_PITCH_OFFSETS[stressLabel];
+
+          // 중요한 단어만 노란색 형광펜 표시
+          if (isImportant) {
+            span.setAttribute('data-stress', 'primary');
+          }
+
+          const motifStep = MELODIC_MOTIF[motifIndex % MELODIC_MOTIF.length];
+          const midi = baseMidi + motifStep + stressOffset;
+
+          const rhythmBase = RHYTHM_PATTERN[motifIndex % RHYTHM_PATTERN.length];
+          const lengthBonus = clean.length > 7 ? 0.25 : clean.length > 4 ? 0.1 : 0;
+          const cadenceBonus = /[.,!?]$/.test(raw) ? 0.35 : 0;
+          const duration = Math.max(0.32, rhythmBase + lengthBonus + cadenceBonus);
+          const rest = /[.!?]$/.test(raw) ? 0.28 : 0.12;
+
+          noteSchedule.push({
+            start: currentTime,
+            end: currentTime + duration,
+            duration,
+            midi,
+            span,
+            stress: stressLabel,
+          });
+
+          currentTime += duration + rest;
+          motifIndex += 1;
+        });
+      };
+
+      const resetHighlights = () => {
+        wordSpans.forEach((span) => span.classList.remove('active'));
+      };
+
+      const clearHighlightTimeouts = () => {
+        highlightTimeouts.forEach((timeout) => clearTimeout(timeout));
+        highlightTimeouts = [];
+      };
+
+      const updateMelodyStatus = (text) => {
+        melodyStatus.textContent = `🎼 ${text}`;
+      };
+
+      const getGainForStress = (stress) => {
+        if (stress === 'primary') return 0.32;
+        if (stress === 'secondary') return 0.25;
+        return 0.18;
+      };
+
+      const startMelody = () => {
+        if (!noteSchedule.length) {
+          buildNoteSchedule();
+        }
+        if (!noteSchedule.length || isMelodyPlaying) return;
+
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        audioCtx.resume().catch(() => {});
+        resetHighlights();
+        clearHighlightTimeouts();
+        activeNodes = [];
+
+        const speed = playbackSpeed;
+        const startTime = audioCtx.currentTime + 0.12;
+        isMelodyPlaying = true;
+        melodyToggle.textContent = '⏹ 멜로디 정지';
+        melodyStop.disabled = false;
+        updateMelodyStatus(`멜로디 재생 중 · ${speed.toFixed(1)}x`);
+
+        masterGain = audioCtx.createGain();
+        masterGain.gain.setValueAtTime(0.55, startTime);
+
+        accompanimentGain = audioCtx.createGain();
+        accompanimentGain.gain.setValueAtTime(0.25, startTime);
+
+        const chordProgression = ['Cmaj7', 'Am7', 'Dm7', 'G7'];
+        const chordVoicings = {
+          Cmaj7: [60, 64, 67, 71],
+          Am7: [57, 60, 64, 67],
+          Dm7: [62, 65, 69, 72],
+          G7: [55, 59, 62, 65],
+        };
+
+        const arpeggiateChord = (startBeat, chordName, lengthBeats) => {
+          const notes = chordVoicings[chordName];
+          const beatDuration = 0.6 / speed;
+          notes.forEach((note, index) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            const start = startTime + (startBeat + index * 0.4) * beatDuration;
+            const noteDuration = lengthBeats * beatDuration * 0.8;
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(midiToFrequency(note), start);
+
+            gain.gain.setValueAtTime(0.0001, start);
+            gain.gain.linearRampToValueAtTime(0.18, start + 0.08);
+            gain.gain.exponentialRampToValueAtTime(0.0001, start + noteDuration);
+
+            osc.connect(gain).connect(accompanimentGain);
+            osc.start(start);
+            osc.stop(start + noteDuration + 0.1);
+
+            activeNodes.push({ oscillator: osc });
+          });
+        };
+
+        chordProgression.forEach((chord, idx) => {
+          arpeggiateChord(idx * 4, chord, 4);
+        });
+
+        ambienceDelay = audioCtx.createDelay();
+        ambienceDelay.delayTime.setValueAtTime(0.24, startTime);
+        ambienceFeedback = audioCtx.createGain();
+        ambienceFeedback.gain.setValueAtTime(0.22, startTime);
+        ambienceDelay.connect(ambienceFeedback).connect(ambienceDelay);
+
+        ambienceTone = audioCtx.createGain();
+        ambienceTone.gain.setValueAtTime(0.35, startTime);
+
+        masterGain.connect(audioCtx.destination);
+        masterGain.connect(ambienceDelay);
+        ambienceDelay.connect(ambienceTone).connect(audioCtx.destination);
+        accompanimentGain.connect(audioCtx.destination);
+        accompanimentGain.connect(ambienceDelay);
+
+        noteSchedule.forEach((note) => {
+          const oscillator = audioCtx.createOscillator();
+          const gainNode = audioCtx.createGain();
+          const filter = audioCtx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(2400, startTime + note.start / speed);
+          filter.Q.setValueAtTime(0.8, startTime + note.start / speed);
+
+          const vibrato = audioCtx.createOscillator();
+          const vibratoGain = audioCtx.createGain();
+
+          const frequency = midiToFrequency(note.midi);
+          const scaledStart = startTime + note.start / speed;
+          const scaledDuration = note.duration / speed;
+          const noteEnd = scaledStart + scaledDuration;
+
+          oscillator.type = 'triangle';
+          oscillator.frequency.setValueAtTime(frequency, scaledStart);
+
+          vibrato.frequency.setValueAtTime(5.2, scaledStart);
+          const vibratoDepth =
+            note.stress === 'primary' ? 7 : note.stress === 'secondary' ? 5 : 3;
+          vibratoGain.gain.setValueAtTime(vibratoDepth, scaledStart);
+          vibrato.connect(vibratoGain).connect(oscillator.frequency);
+
+          const baseGain = getGainForStress(note.stress);
+          const attack = Math.min(0.08, scaledDuration * 0.3);
+          const decay = Math.min(0.12, scaledDuration * 0.25);
+          const sustain = baseGain * 0.7;
+          const release = Math.max(0.1, scaledDuration * 0.35);
+
+          gainNode.gain.setValueAtTime(0.0001, scaledStart);
+          gainNode.gain.linearRampToValueAtTime(baseGain, scaledStart + attack);
+          gainNode.gain.linearRampToValueAtTime(sustain, scaledStart + attack + decay);
+          gainNode.gain.setValueAtTime(
+            sustain,
+            Math.max(scaledStart + attack + decay, noteEnd - release)
+          );
+          gainNode.gain.linearRampToValueAtTime(0.0001, noteEnd);
+
+          const shimmer = audioCtx.createOscillator();
+          shimmer.type = 'sine';
+          shimmer.frequency.setValueAtTime(frequency * 2, scaledStart);
+          const shimmerGain = audioCtx.createGain();
+          shimmerGain.gain.setValueAtTime(baseGain * 0.25, scaledStart);
+
+          oscillator.connect(filter);
+          shimmer.connect(shimmerGain).connect(filter);
+          filter.connect(gainNode).connect(masterGain);
+
+          oscillator.start(scaledStart);
+          oscillator.stop(noteEnd + 0.05);
+          vibrato.start(scaledStart);
+          vibrato.stop(noteEnd + 0.05);
+          shimmer.start(scaledStart);
+          shimmer.stop(noteEnd + 0.05);
+
+          activeNodes.push({ oscillator, vibrato, shimmer });
+
+          const highlightDelay = Math.max(0, (scaledStart - audioCtx.currentTime) * 1000);
+          const highlightTimeout = setTimeout(() => {
+            resetHighlights();
+            note.span.classList.add('active');
+          }, highlightDelay);
+          highlightTimeouts.push(highlightTimeout);
+        });
+
+        const totalDuration = noteSchedule.length
+          ? noteSchedule[noteSchedule.length - 1].start +
+            noteSchedule[noteSchedule.length - 1].duration
+          : 0;
+        const finishDelay = Math.max(
+          0,
+          (startTime + totalDuration / speed - audioCtx.currentTime + 0.1) * 1000
+        );
+        highlightTimeouts.push(
+          setTimeout(() => {
+            stopMelody();
+          }, finishDelay)
+        );
+      };
+
+      const stopMelody = () => {
+        if (audioCtx) {
+          const now = audioCtx.currentTime;
+          activeNodes.forEach((node) => {
+            const { oscillator, vibrato, shimmer } = node;
+            try {
+              oscillator.stop(now + 0.01);
+            } catch (e) {}
+            try {
+              if (vibrato) vibrato.stop(now + 0.01);
+            } catch (e) {}
+            try {
+              if (shimmer) shimmer.stop(now + 0.01);
+            } catch (e) {}
+          });
+          activeNodes = [];
+          if (masterGain) {
+            masterGain.disconnect();
+            masterGain = null;
+          }
+          if (accompanimentGain) {
+            accompanimentGain.disconnect();
+            accompanimentGain = null;
+          }
+          if (ambienceDelay) {
+            ambienceDelay.disconnect();
+            ambienceDelay = null;
+          }
+          if (ambienceFeedback) {
+            ambienceFeedback.disconnect();
+            ambienceFeedback = null;
+          }
+          if (ambienceTone) {
+            ambienceTone.disconnect();
+            ambienceTone = null;
+          }
+          audioCtx.close().catch(() => {});
+          audioCtx = null;
+        }
+        isMelodyPlaying = false;
+        melodyToggle.textContent = '🎵 멜로디 재생';
+        melodyStop.disabled = true;
+        updateMelodyStatus(`멜로디: 대기 중 · ${playbackSpeed.toFixed(1)}x`);
+        resetHighlights();
+        clearHighlightTimeouts();
+      };
+
+      // 시간 포맷 함수
+      const formatTime = (seconds) => {
+        if (!isFinite(seconds) || isNaN(seconds)) return '0:00';
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs.toString().padStart(2, '0')}`;
+      };
+
+      // 재생바 업데이트 함수
+      const updateProgressBar = (current, duration) => {
+        if (!duration || duration === 0) return;
+        const percentage = (current / duration) * 100;
+        melodyProgressFill.style.width = `${percentage}%`;
+        melodyProgressHandle.style.left = `${percentage}%`;
+        melodyCurrentTime.textContent = formatTime(current);
+      };
+
+      // 재생바 업데이트 시작
+      const startProgressUpdate = () => {
+        stopProgressUpdate(); // 기존 인터벌 제거
+        progressUpdateInterval = setInterval(() => {
+          if (isMp3Playing && mp3Audio.duration) {
+            updateProgressBar(mp3Audio.currentTime, mp3Audio.duration);
+          }
+        }, 100); // 100ms마다 업데이트
+      };
+
+      // 재생바 업데이트 중지
+      const stopProgressUpdate = () => {
+        if (progressUpdateInterval) {
+          clearInterval(progressUpdateInterval);
+          progressUpdateInterval = null;
+        }
+      };
+
+      // 재생바 클릭으로 위치 이동
+      melodyProgressBar.addEventListener('click', (e) => {
+        if (!mp3Audio.duration) return;
+        const rect = melodyProgressBar.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const percentage = clickX / rect.width;
+        const newTime = percentage * mp3Audio.duration;
+        mp3Audio.currentTime = Math.max(0, Math.min(newTime, mp3Audio.duration));
+        updateProgressBar(mp3Audio.currentTime, mp3Audio.duration);
+      });
+
+      melodyToggle.addEventListener('click', async () => {
+        // MP3 파일 재생/일시정지 (멜로디 재생 버튼)
+        if (isMp3Playing) {
+          // 일시정지
+          mp3Audio.pause();
+          isMp3Playing = false;
+          stopProgressUpdate();
+          melodyToggle.textContent = '🎵 멜로디 재생';
+          melodyStop.disabled = true;
+          updateMelodyStatus(`멜로디: 대기 중 · ${playbackSpeed.toFixed(1)}x`);
+        } else {
+          // 기존 Web Audio 멜로디 정지
+          if (isMelodyPlaying) {
+            stopMelody();
+          }
+          
+          // noteSchedule이 없으면 먼저 빌드
+          if (!noteSchedule.length) {
+            buildNoteSchedule();
+          }
+          
+          // MP3 재생
+          try {
+            console.log('MP3 파일 재생 시작: /toeic-melody-learning.mp3');
+            mp3Audio.currentTime = 0;
+            mp3Audio.playbackRate = playbackSpeed;
+            
+            // MP3 파일의 메타데이터가 로드될 때까지 대기
+            const waitForDuration = () => {
+              return new Promise((resolve) => {
+                if (mp3Audio.duration && mp3Audio.duration > 0) {
+                  resolve(mp3Audio.duration);
+                } else {
+                  const onLoadedMetadata = () => {
+                    mp3Audio.removeEventListener('loadedmetadata', onLoadedMetadata);
+                    resolve(mp3Audio.duration || 0);
+                  };
+                  mp3Audio.addEventListener('loadedmetadata', onLoadedMetadata);
+                  // 타임아웃 설정 (5초)
+                  setTimeout(() => {
+                    mp3Audio.removeEventListener('loadedmetadata', onLoadedMetadata);
+                    resolve(mp3Audio.duration || 0);
+                  }, 5000);
+                }
+              });
+            };
+            
+            const mp3Duration = await waitForDuration();
+            await mp3Audio.play();
+            
+            console.log('MP3 재생 성공, 길이:', mp3Duration);
+            isMp3Playing = true;
+            melodyToggle.textContent = '⏸ 멜로디 일시정지';
+            melodyStop.disabled = false;
+            updateMelodyStatus(`멜로디 재생 중 · ${playbackSpeed.toFixed(1)}x`);
+            
+            // 재생바 표시 및 초기화
+            if (melodyProgressContainer) {
+              melodyProgressContainer.style.display = 'flex';
+              if (melodyDuration) {
+                melodyDuration.textContent = formatTime(mp3Duration);
+              }
+            }
+            
+            // 재생바 업데이트 시작
+            startProgressUpdate();
+            
+            mp3Audio.onended = () => {
+              console.log('MP3 재생 완료');
+              isMp3Playing = false;
+              melodyToggle.textContent = '🎵 멜로디 재생';
+              melodyStop.disabled = true;
+              updateMelodyStatus(`멜로디: 대기 중 · ${playbackSpeed.toFixed(1)}x`);
+              stopProgressUpdate();
+              // 재생바를 초기 상태로
+              if (mp3Audio.duration) {
+                updateProgressBar(0, mp3Audio.duration);
+              }
+            };
+          } catch (error) {
+            console.error('MP3 재생 오류:', error);
+            updateMelodyStatus('멜로디: 재생 오류 - 파일을 확인해주세요.');
+            alert('MP3 파일 재생에 실패했습니다.\n\n오류: ' + error.message + '\n\n파일 경로: /toeic-melody-learning.mp3\n파일이 public 폴더에 있는지 확인해주세요.');
+          }
+        }
+      });
+
+      melodyStop.addEventListener('click', () => {
+        if (isMp3Playing) {
+          mp3Audio.pause();
+          mp3Audio.currentTime = 0;
+          isMp3Playing = false;
+          stopProgressUpdate();
+          if (mp3Audio.duration) {
+            updateProgressBar(0, mp3Audio.duration);
+          }
+          melodyToggle.textContent = '🎵 멜로디 재생';
+          melodyStop.disabled = true;
+          updateMelodyStatus(`멜로디: 대기 중 · ${playbackSpeed.toFixed(1)}x`);
+        } else {
+          stopMelody();
+        }
+      });
+
+      const updateSpeechStatus = (text) => {
+        speechStatus.textContent = `🗣️ ${text}`;
+      };
+
+      const resetSpeech = () => {
+        isSpeechPlaying = false;
+        wasSpeechPaused = false;
+        speechToggle.textContent = '▶ 음성 재생';
+        speechStop.disabled = true;
+        speechToggle.disabled = false;
+        updateSpeechStatus(`음성: 대기 중 · ${playbackSpeed.toFixed(1)}x`);
+      };
+
+      const speakNarration = ({ onComplete, suppressControls = false } = {}) => {
+        if (!('speechSynthesis' in window)) {
+          alert('이 브라우저에서는 음성 합성이 지원되지 않습니다.');
+          return null;
+        }
+        const utterance = new SpeechSynthesisUtterance(melodyText);
+        utterance.lang = 'en-US';
+        const rate = Math.min(2.0, Math.max(0.5, 0.92 * playbackSpeed));
+        const pitch = Math.max(0.8, Math.min(1.6, 1.1 + (playbackSpeed - 1) * 0.12));
+        utterance.rate = rate;
+        utterance.pitch = pitch;
+        utterance.onend = () => {
+          resetSpeech();
+          if (typeof onComplete === 'function') {
+            onComplete();
+          }
+        };
+        utterance.onerror = utterance.onend;
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utterance);
+        speechUtterance = utterance;
+        isSpeechPlaying = true;
+        wasSpeechPaused = false;
+        if (suppressControls) {
+          speechToggle.disabled = true;
+          speechStop.disabled = true;
+          speechToggle.textContent = '⏸ 음성 일시정지';
+        } else {
+          speechToggle.disabled = false;
+          speechStop.disabled = false;
+          speechToggle.textContent = '⏸ 음성 일시정지';
+        }
+        updateSpeechStatus(`음성: 재생 중 · ${playbackSpeed.toFixed(1)}x`);
+        return utterance;
+      };
+
+      const startSpeech = () => {
+        speakNarration();
+      };
+
+      speechToggle.addEventListener('click', () => {
+        if (!isSpeechPlaying && !wasSpeechPaused) {
+          startSpeech();
+          return;
+        }
+        if (isSpeechPlaying && !wasSpeechPaused) {
+          window.speechSynthesis.pause();
+          isSpeechPlaying = false;
+          wasSpeechPaused = true;
+          speechToggle.textContent = '▶ 음성 다시 재생';
+          updateSpeechStatus(`음성: 일시정지 · ${playbackSpeed.toFixed(1)}x`);
+        } else if (!isSpeechPlaying && wasSpeechPaused) {
+          window.speechSynthesis.resume();
+          isSpeechPlaying = true;
+          wasSpeechPaused = false;
+          speechToggle.textContent = '⏸ 음성 일시정지';
+          updateSpeechStatus(`음성: 재생 중 · ${playbackSpeed.toFixed(1)}x`);
+        }
+      });
+
+      speechStop.addEventListener('click', () => {
+        window.speechSynthesis.cancel();
+        resetSpeech();
+      });
+
+      window.addEventListener('beforeunload', () => {
+        window.speechSynthesis.cancel();
+      });
+
+      const updateRecordStatus = (text) => {
+        recordStatus.textContent = `🎤 ${text}`;
+      };
+
+      const startRecording = async () => {
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          alert('이 브라우저에서는 녹음이 지원되지 않습니다.');
+          return;
+        }
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          mediaRecorder = new MediaRecorder(stream);
+          recordedChunks = [];
+
+          mediaRecorder.ondataavailable = (event) => {
+            if (event.data.size > 0) {
+              recordedChunks.push(event.data);
+            }
+          };
+
+          mediaRecorder.onstop = () => {
+            const blob = new Blob(recordedChunks, { type: 'audio/webm' });
+            const url = URL.createObjectURL(blob);
+            recordingCount += 1;
+            const audioWrapper = document.createElement('div');
+            const label = document.createElement('strong');
+            label.textContent = `녹음 ${recordingCount}`;
+            audioWrapper.appendChild(label);
+            const audio = document.createElement('audio');
+            audio.controls = true;
+            audio.src = url;
+            audioWrapper.appendChild(audio);
+            const download = document.createElement('a');
+            download.href = url;
+            download.textContent = '다운로드';
+            download.download = `toeic-melody-recording-${recordingCount}.webm`;
+            download.style.marginLeft = '12px';
+            audioWrapper.appendChild(download);
+            recordingsList.appendChild(audioWrapper);
+            recordingsPanel.hidden = false;
+            stream.getTracks().forEach((track) => track.stop());
+            recordToggle.disabled = false;
+            updateRecordStatus('녹음: 완료');
+          };
+
+          mediaRecorder.start();
+          recordToggle.disabled = true;
+          recordStop.disabled = false;
+          updateRecordStatus('녹음 중...');
+        } catch (error) {
+          console.error('녹음 오류:', error);
+          alert('마이크 접근 권한이 필요합니다.');
+        }
+      };
+
+      const stopRecording = () => {
+        if (!mediaRecorder || mediaRecorder.state !== 'recording') return;
+        mediaRecorder.stop();
+        recordStop.disabled = true;
+        updateRecordStatus('녹음 처리 중...');
+      };
+
+      speedSlider.addEventListener('input', (event) => {
+        const value = parseFloat(event.target.value);
+        playbackSpeed = value;
+        speedValue.textContent = `${playbackSpeed.toFixed(1)}x`;
+
+        // MP3 재생 속도 업데이트
+        if (isMp3Playing) {
+          mp3Audio.playbackRate = playbackSpeed;
+        }
+
+        if (isMelodyPlaying) {
+          stopMelody();
+        } else {
+          updateMelodyStatus(`멜로디: 대기 중 · ${playbackSpeed.toFixed(1)}x`);
+        }
+
+        if (isSpeechPlaying || wasSpeechPaused) {
+          window.speechSynthesis.cancel();
+          resetSpeech();
+        } else {
+          updateSpeechStatus(`음성: 대기 중 · ${playbackSpeed.toFixed(1)}x`);
+        }
+      });
+
+      recordToggle.addEventListener('click', startRecording);
+      recordStop.addEventListener('click', stopRecording);
+
+      // 퀴즈 기능
+      const quizData = {
+        '4': { correct: 'payment', options: ['payment', 'paying', 'paid', 'pay'] },
+        '5': { correct: 'remaining', options: ['remaining', 'remain', 'remained', 'remains'] },
+        '6': { correct: 'If', options: ['If', 'When', 'Because', 'Although'] },
+        '7': { correct: 'Otherwise, we cannot guarantee the July 5 delivery date', options: [
+          'Otherwise, we cannot guarantee the July 5 delivery date',
+          'However, we can guarantee the July 5 delivery date',
+          'Therefore, we will guarantee the July 5 delivery date',
+          'Moreover, we cannot guarantee the July 5 delivery date'
+        ]}
+      };
+
+      // 보기 선택 기능
+      document.querySelectorAll('.quiz-option').forEach((option) => {
+        option.addEventListener('click', function() {
+          const quizId = this.closest('.answer').dataset.quiz;
+          const selectedValue = this.dataset.value;
+          const correctAnswer = quizData[quizId].correct;
+          
+          // 같은 문제의 다른 보기들 선택 해제
+          const quizOptions = this.closest('.answer').querySelectorAll('.quiz-option');
+          quizOptions.forEach(opt => {
+            opt.classList.remove('selected', 'correct', 'incorrect');
+          });
+          
+          // 선택한 보기 표시
+          this.classList.add('selected');
+          
+          // 정답이 이미 표시된 경우 정답/오답 표시
+          const answerReveal = document.getElementById(`answer-${quizId}`);
+          if (answerReveal && answerReveal.classList.contains('show')) {
+            if (selectedValue === correctAnswer) {
+              this.classList.add('correct');
+            } else {
+              this.classList.add('incorrect');
+              // 정답 보기도 표시
+              quizOptions.forEach(opt => {
+                if (opt.dataset.value === correctAnswer) {
+                  opt.classList.add('correct');
+                }
+              });
+            }
+          }
+        });
+      });
+
+      // 정답 확인 버튼
+      document.querySelectorAll('.show-answer-btn').forEach((btn) => {
+        btn.addEventListener('click', function() {
+          const quizId = this.dataset.quiz;
+          const answerReveal = document.getElementById(`answer-${quizId}`);
+          const quizOptions = this.closest('.answer').querySelectorAll('.quiz-option');
+          const correctAnswer = quizData[quizId].correct;
+          
+          // 정답 표시
+          answerReveal.classList.add('show');
+          this.style.display = 'none';
+          
+          // 선택한 보기가 있으면 정답/오답 표시
+          const selectedOption = this.closest('.answer').querySelector('.quiz-option.selected');
+          if (selectedOption) {
+            const selectedValue = selectedOption.dataset.value;
+            if (selectedValue === correctAnswer) {
+              selectedOption.classList.add('correct');
+              selectedOption.classList.remove('incorrect');
+            } else {
+              selectedOption.classList.add('incorrect');
+              // 정답 보기 표시
+              quizOptions.forEach(opt => {
+                if (opt.dataset.value === correctAnswer) {
+                  opt.classList.add('correct');
+                }
+              });
+            }
+          } else {
+            // 선택하지 않았어도 정답 보기 표시
+            quizOptions.forEach(opt => {
+              if (opt.dataset.value === correctAnswer) {
+                opt.classList.add('correct');
+              }
+            });
+          }
+        });
+      });
+
+      // 해석 보기/숨기기 토글
+      let isTranslationVisible = false;
+      toggleTranslation.addEventListener('click', () => {
+        isTranslationVisible = !isTranslationVisible;
+        const translationElements = document.querySelectorAll('.translation-text');
+        translationElements.forEach((el) => {
+          if (isTranslationVisible) {
+            el.classList.add('show');
+          } else {
+            el.classList.remove('show');
+          }
+        });
+        toggleTranslation.textContent = isTranslationVisible ? '🙈 원문 해석 숨기기' : '📖 원문 해석 보기';
+      });
+
+      renderMelodyText();
+      buildNoteSchedule();
+      updateMelodyStatus(`멜로디: 대기 중 · ${playbackSpeed.toFixed(1)}x`);
+      updateSpeechStatus(`음성: 대기 중 · ${playbackSpeed.toFixed(1)}x`);
+    </script>
+  </body>
+</html>
+
+  </body>
+</html>
