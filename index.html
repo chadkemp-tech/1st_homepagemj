@@ -158,6 +158,14 @@
         color: #666666;
       }
 
+      .quiz-question {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #34495e;
+        margin: 12px 0 16px 0;
+        line-height: 1.6;
+      }
+
       .answer .melody {
         color: #6B46C1;
         font-weight: 600;
@@ -243,6 +251,107 @@
         font-size: 1rem;
       }
 
+      .vocabulary-section {
+        margin-top: 32px;
+      }
+
+      .vocabulary-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 16px;
+        margin-top: 20px;
+      }
+
+      .vocab-card {
+        background: #FFFFFF;
+        border: 1px solid #E0E0E0;
+        border-radius: 10px;
+        padding: 20px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .vocab-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-color: #6B46C1;
+        transform: translateY(-2px);
+      }
+
+      .vocab-card.flipped {
+        background: #F8F9FA;
+      }
+
+      .vocab-word {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #34495e;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .vocab-pronunciation {
+        font-size: 0.85rem;
+        color: #666666;
+        font-style: italic;
+        margin-bottom: 12px;
+      }
+
+      .vocab-meaning {
+        font-size: 1rem;
+        color: #333333;
+        line-height: 1.6;
+        margin-bottom: 12px;
+        display: none;
+      }
+
+      .vocab-card.flipped .vocab-meaning {
+        display: block;
+      }
+
+      .vocab-card.flipped .vocab-word {
+        color: #6B46C1;
+      }
+
+      .vocab-example {
+        font-size: 0.9rem;
+        color: #666666;
+        font-style: italic;
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid #E0E0E0;
+        display: none;
+      }
+
+      .vocab-card.flipped .vocab-example {
+        display: block;
+      }
+
+      .vocab-flip-hint {
+        font-size: 0.8rem;
+        color: #999999;
+        margin-top: 8px;
+        text-align: center;
+      }
+
+      .vocab-card.flipped .vocab-flip-hint {
+        display: none;
+      }
+
+      .vocab-part {
+        display: inline-block;
+        font-size: 0.75rem;
+        padding: 2px 8px;
+        background: #E8F4F8;
+        color: #004080;
+        border-radius: 4px;
+        font-weight: 500;
+        margin-left: 8px;
+      }
+
       .notes {
         background: #FAFAFA;
         padding: 24px;
@@ -295,17 +404,94 @@
       }
 
       .word-token {
-        display: inline-block;
-        margin-right: 0.4rem;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 0.5rem;
         padding: 0.2rem 0.4rem;
         border-radius: 4px;
-        transition: background 0.2s ease, color 0.2s ease;
+        transition: all 0.2s ease;
+        position: relative;
+        vertical-align: baseline;
+        margin-bottom: 24px; /* pitch 시각화 공간 확보 */
       }
 
       .word-token.active {
         background: #6B46C1;
         color: #FFFFFF;
         font-weight: 600;
+      }
+
+      .pitch-visualization {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 0px;
+        background: linear-gradient(to top, #6B46C1, #9B59B6);
+        border-radius: 2px;
+        transition: height 0.3s ease, opacity 0.3s ease;
+        opacity: 1;
+        pointer-events: none;
+        box-shadow: 0 2px 4px rgba(107, 70, 193, 0.3);
+        z-index: 1;
+      }
+
+      .pitch-dot {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 6px;
+        height: 6px;
+        background: #6B46C1;
+        border-radius: 50%;
+        opacity: 1;
+        transition: all 0.3s ease;
+        box-shadow: 0 1px 3px rgba(107, 70, 193, 0.4);
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      .word-token.active .pitch-dot {
+        background: #FFFFFF;
+        box-shadow: 0 2px 6px rgba(107, 70, 193, 0.6);
+        transform: translateX(-50%) scale(1.2);
+      }
+
+      .pitch-bar-container {
+        position: absolute;
+        top: -22px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 24px;
+        height: 16px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .word-token.active .pitch-bar-container {
+        opacity: 1.2;
+      }
+
+      .pitch-bar {
+        width: 2.5px;
+        background: linear-gradient(to top, #6B46C1, #9B59B6, #E91E63);
+        border-radius: 2px 2px 0 0;
+        margin: 0 0.5px;
+        transition: height 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 1px 2px rgba(107, 70, 193, 0.3);
+      }
+
+      .word-token.active .pitch-bar {
+        transform: scaleY(1.15);
+        box-shadow: 0 2px 4px rgba(107, 70, 193, 0.5);
       }
 
       .word-token[data-stress="primary"],
@@ -660,8 +846,11 @@
               <span class="blank-pill">4</span>
               <span class="answer-word">문제 4</span>
             </div>
+            <p class="quiz-question">
+              다음 빈칸에 들어갈 가장 적절한 단어는?
+            </p>
             <p class="explanation">
-              Thank you for sending the final <strong>_____</strong> for your recent order...
+              Thank you for sending the final <strong>_____</strong> for your recent order, which consisted of 40 cubic feet of lumber delivered on June 15.
             </p>
             <div class="quiz-options">
               <div class="quiz-option" data-value="payment">(A) payment</div>
@@ -686,8 +875,11 @@
               <span class="blank-pill">5</span>
               <span class="answer-word">문제 5</span>
             </div>
+            <p class="quiz-question">
+              다음 빈칸에 들어갈 가장 적절한 단어는?
+            </p>
             <p class="explanation">
-              ...you still have one <strong>_____</strong> outstanding bill for flooring.
+              However, we do wish to remind you that you still have one <strong>_____</strong> outstanding bill for flooring.
             </p>
             <div class="quiz-options">
               <div class="quiz-option" data-value="remaining">(A) remaining</div>
@@ -713,8 +905,11 @@
               <span class="blank-pill">6</span>
               <span class="answer-word">문제 6</span>
             </div>
+            <p class="quiz-question">
+              다음 빈칸에 들어갈 가장 적절한 단어는?
+            </p>
             <p class="explanation">
-              <strong>_____</strong> that day is acceptable to you, we will go ahead and process it.
+              As for delivery of the flooring, we have checked with the warehouse and they said the materials can be sent to you by July 5. <strong>_____</strong> that day is acceptable to you, we will go ahead and process it.
             </p>
             <div class="quiz-options">
               <div class="quiz-option" data-value="If">(A) If</div>
@@ -739,8 +934,11 @@
               <span class="blank-pill">7</span>
               <span class="answer-word">문제 7</span>
             </div>
+            <p class="quiz-question">
+              다음 빈칸에 들어갈 가장 적절한 문장은?
+            </p>
             <p class="explanation">
-              Please bear in mind that we will need confirmation from you by June 29... <strong>_____</strong>
+              Please bear in mind that we will need confirmation from you by June 29 in order to make the July 5 date. <strong>_____</strong> We hope to hear from you soon.
             </p>
             <div class="quiz-options">
               <div class="quiz-option" data-value="Otherwise, we cannot guarantee the July 5 delivery date">(A) Otherwise, we cannot guarantee the July 5 delivery date</div>
@@ -759,6 +957,16 @@
               </p>
             </div>
           </article>
+        </div>
+      </section>
+
+      <section class="card vocabulary-section">
+        <h2>📚 단어 학습</h2>
+        <p style="color: #666666; margin-bottom: 20px;">
+          편지에 나온 주요 단어들을 학습해보세요. 카드를 클릭하면 한글 뜻과 예문을 확인할 수 있습니다.
+        </p>
+        <div class="vocabulary-grid" id="vocabulary-grid">
+          <!-- 단어 카드들이 여기에 동적으로 추가됩니다 -->
         </div>
       </section>
 
@@ -987,15 +1195,97 @@ John May.`;
       // 초기 로드 시도
       tryLoadAudio();
 
-      const createWordSpan = (word, index) => {
+      // 중요한 단어 목록
+      const importantWords = new Set([
+        'payment', 'remaining', 'outstanding', 'delivery', 'warehouse',
+        'materials', 'acceptable', 'confirmation', 'guarantee', 'enclosed',
+        'receipt', 'consisted', 'cubic', 'lumber', 'promptly'
+      ]);
+
+      const createWordSpan = (word, index, pitch = null, isImportant = false) => {
         const span = document.createElement('span');
         span.textContent = word;
         span.dataset.index = index;
         span.className = 'word-token';
+        
+        // 중요한 단어인지 확인
+        const clean = word.replace(/[^A-Za-z']/g, '').toLowerCase();
+        const isImportantWord = isImportant || importantWords.has(clean);
+        
+        // 중요한 단어에만 Pitch visualization 추가
+        if (isImportantWord && pitch !== null) {
+          span.dataset.pitch = pitch;
+          
+          // 중요한 단어 표시
+          if (isImportantWord) {
+            span.setAttribute('data-stress', 'primary');
+          }
+          
+          // Pitch 막대 컨테이너
+          const pitchBarContainer = document.createElement('div');
+          pitchBarContainer.className = 'pitch-bar-container';
+          
+          // 3개의 막대로 음고 표현 (낮음, 중간, 높음)
+          const pitchLevels = [
+            Math.max(0, pitch - 0.2), // 낮은 음
+            pitch, // 중간 음
+            Math.min(1, pitch + 0.2) // 높은 음
+          ];
+          
+          pitchLevels.forEach((level) => {
+            const bar = document.createElement('div');
+            bar.className = 'pitch-bar';
+            // 최소 높이 3px, 최대 높이 14px (더 작게)
+            const barHeight = 3 + (level * 11);
+            bar.style.height = `${barHeight}px`;
+            pitchBarContainer.appendChild(bar);
+          });
+          
+          span.appendChild(pitchBarContainer);
+          
+          // Pitch 점 (상단) - pitch가 높을수록 더 위에
+          const pitchDot = document.createElement('div');
+          pitchDot.className = 'pitch-dot';
+          // pitch 0일 때 -20px, pitch 1일 때 -30px (범위 축소)
+          const dotTop = -20 - (pitch * 10);
+          pitchDot.style.top = `${dotTop}px`;
+          span.appendChild(pitchDot);
+        }
+        
         return span;
       };
 
+      // 단어별 pitch 데이터 생성 (중요한 단어만)
+      const generatePitchData = () => {
+        const pitchMap = new Map();
+        const words = melodyText.trim().split(/\s+/).filter(w => w);
+        
+        words.forEach((word, idx) => {
+          const clean = word.replace(/[^A-Za-z']/g, '').toLowerCase();
+          if (!clean) return;
+          
+          const isImportant = importantWords.has(clean);
+          
+          // 중요한 단어만 pitch 데이터 생성
+          if (isImportant) {
+            // Pitch 계산: 중요한 단어는 높게
+            // MIDI note를 0-1 범위로 정규화 (C4=60 ~ C6=84 -> 0.0 ~ 1.0)
+            const baseMidi = 64; // E4
+            const motifStep = MELODIC_MOTIF[idx % MELODIC_MOTIF.length];
+            const stressOffset = STRESS_PITCH_OFFSETS.primary;
+            const midi = baseMidi + motifStep + stressOffset;
+            
+            // MIDI 60-84 범위를 0-1로 정규화
+            const normalizedPitch = Math.max(0, Math.min(1, (midi - 60) / 24));
+            pitchMap.set(idx, normalizedPitch);
+          }
+        });
+        
+        return pitchMap;
+      };
+
       const renderMelodyText = () => {
+        const pitchMap = generatePitchData();
         const paragraphs = melodyText.trim().split(/\n\s*\n/);
         let wordIndex = 0;
         paragraphs.forEach((paragraph) => {
@@ -1005,11 +1295,15 @@ John May.`;
           // 영어 문장 렌더링
           const paragraphEl = document.createElement('p');
           paragraphEl.style.margin = '0 0 6px 0';
-          paragraphEl.style.lineHeight = '1.8';
+          paragraphEl.style.lineHeight = '2.2';
           const words = paragraph.split(/\s+/);
           words.forEach((word) => {
             if (!word) return;
-            const span = createWordSpan(word, wordIndex);
+            const clean = word.replace(/[^A-Za-z']/g, '').toLowerCase();
+            const isImportant = importantWords.has(clean);
+            // 중요한 단어만 pitch 전달
+            const pitch = isImportant ? pitchMap.get(wordIndex) : null;
+            const span = createWordSpan(word, wordIndex, pitch, isImportant);
             wordSpans.push(span);
             paragraphEl.appendChild(span);
             paragraphEl.appendChild(document.createTextNode(' '));
@@ -1104,7 +1398,22 @@ John May.`;
       };
 
       const resetHighlights = () => {
-        wordSpans.forEach((span) => span.classList.remove('active'));
+        wordSpans.forEach((span) => {
+          span.classList.remove('active');
+          // Pitch visualization 초기화
+          const pitchBars = span.querySelectorAll('.pitch-bar');
+          const pitchDot = span.querySelector('.pitch-dot');
+          
+          if (pitchBars.length > 0) {
+            pitchBars.forEach((bar) => {
+              bar.style.transform = 'scaleY(1)';
+            });
+          }
+          
+          if (pitchDot) {
+            pitchDot.style.transform = 'translateX(-50%) scale(1)';
+          }
+        });
       };
 
       const clearHighlightTimeouts = () => {
@@ -1353,6 +1662,7 @@ John May.`;
           }
         }, 100); // 100ms마다 업데이트
       };
+
 
       // 재생바 업데이트 중지
       const stopProgressUpdate = () => {
@@ -1749,8 +2059,151 @@ John May.`;
         toggleTranslation.textContent = isTranslationVisible ? '🙈 원문 해석 숨기기' : '📖 원문 해석 보기';
       });
 
+      // 단어 학습 데이터
+      const vocabularyData = [
+        {
+          word: 'payment',
+          pronunciation: '/ˈpeɪmənt/',
+          meaning: '결제, 지불',
+          part: 'n.',
+          example: 'Thank you for sending the final payment for your recent order.'
+        },
+        {
+          word: 'remaining',
+          pronunciation: '/rɪˈmeɪnɪŋ/',
+          meaning: '남아있는, 잔여의',
+          part: 'adj.',
+          example: 'You still have one remaining outstanding bill for flooring.'
+        },
+        {
+          word: 'outstanding',
+          pronunciation: '/aʊtˈstændɪŋ/',
+          meaning: '미결제의, 미해결의',
+          part: 'adj.',
+          example: 'You still have one remaining outstanding bill for flooring.'
+        },
+        {
+          word: 'flooring',
+          pronunciation: '/ˈflɔːrɪŋ/',
+          meaning: '바닥재',
+          part: 'n.',
+          example: 'You still have one remaining outstanding bill for flooring.'
+        },
+        {
+          word: 'warehouse',
+          pronunciation: '/ˈwerhaʊs/',
+          meaning: '창고',
+          part: 'n.',
+          example: 'We have checked with the warehouse and they said the materials can be sent to you.'
+        },
+        {
+          word: 'materials',
+          pronunciation: '/məˈtɪriəlz/',
+          meaning: '자재, 재료',
+          part: 'n.',
+          example: 'The materials can be sent to you by July 5.'
+        },
+        {
+          word: 'confirmation',
+          pronunciation: '/ˌkɑːnfərˈmeɪʃən/',
+          meaning: '확인, 확인서',
+          part: 'n.',
+          example: 'We will need confirmation from you by June 29.'
+        },
+        {
+          word: 'guarantee',
+          pronunciation: '/ˌɡærənˈtiː/',
+          meaning: '보장하다, 보증하다',
+          part: 'v.',
+          example: 'We cannot guarantee the July 5 delivery date.'
+        },
+        {
+          word: 'delivery',
+          pronunciation: '/dɪˈlɪvəri/',
+          meaning: '배송, 전달',
+          part: 'n.',
+          example: 'As for delivery of the flooring, we have checked with the warehouse.'
+        },
+        {
+          word: 'enclosed',
+          pronunciation: '/ɪnˈkloʊzd/',
+          meaning: '동봉된',
+          part: 'adj.',
+          example: 'We have enclosed the receipt showing the bill has been paid in full.'
+        },
+        {
+          word: 'receipt',
+          pronunciation: '/rɪˈsiːt/',
+          meaning: '영수증',
+          part: 'n.',
+          example: 'We have enclosed the receipt showing the bill has been paid in full.'
+        },
+        {
+          word: 'lumber',
+          pronunciation: '/ˈlʌmbər/',
+          meaning: '목재',
+          part: 'n.',
+          example: 'Forty cubic feet of lumber delivered on June 15.'
+        },
+        {
+          word: 'acceptable',
+          pronunciation: '/əkˈseptəbəl/',
+          meaning: '수용 가능한, 괜찮은',
+          part: 'adj.',
+          example: 'If that day is acceptable to you, we will go ahead and process it.'
+        },
+        {
+          word: 'process',
+          pronunciation: '/ˈprɑːses/',
+          meaning: '처리하다, 진행하다',
+          part: 'v.',
+          example: 'If that day is acceptable to you, we will go ahead and process it.'
+        },
+        {
+          word: 'otherwise',
+          pronunciation: '/ˈʌðərwaɪz/',
+          meaning: '그렇지 않으면, 그 외에는',
+          part: 'adv.',
+          example: 'Otherwise, we cannot guarantee the July 5 delivery date.'
+        }
+      ];
+
+      // 단어 카드 렌더링
+      const renderVocabulary = () => {
+        const vocabularyGrid = document.getElementById('vocabulary-grid');
+        if (!vocabularyGrid) return;
+
+        vocabularyGrid.innerHTML = '';
+
+        vocabularyData.forEach((vocab) => {
+          const card = document.createElement('div');
+          card.className = 'vocab-card';
+          card.innerHTML = `
+            <div class="vocab-word">
+              ${vocab.word}
+              <span class="vocab-part">${vocab.part}</span>
+            </div>
+            <div class="vocab-pronunciation">${vocab.pronunciation}</div>
+            <div class="vocab-meaning">
+              <strong>뜻:</strong> ${vocab.meaning}
+            </div>
+            <div class="vocab-example">
+              <strong>예문:</strong> ${vocab.example}
+            </div>
+            <div class="vocab-flip-hint">👆 클릭하여 뜻 보기</div>
+          `;
+
+          card.addEventListener('click', () => {
+            card.classList.toggle('flipped');
+          });
+
+          vocabularyGrid.appendChild(card);
+        });
+      };
+
       renderMelodyText();
       buildNoteSchedule();
+      renderVocabulary();
       updateMelodyStatus(`멜로디: 대기 중 · ${playbackSpeed.toFixed(1)}x`);
       updateSpeechStatus(`음성: 대기 중 · ${playbackSpeed.toFixed(1)}x`);
     </script>
